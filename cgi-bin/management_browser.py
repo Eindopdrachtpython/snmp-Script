@@ -173,7 +173,7 @@ elif (input) == "4":
     <head><title>Management Console</title></head>
     <link rel="stylesheet" type="text/css" href="stylesheet.css" />
     <body><h1> Beschikbare ruimte op C: %s </h1></body>
-    </html>""" % r4.rstrip
+    </html>""" % r4.rstrip()
     #Logging
     logging.info('De beschikbare opslag op C: is opgevraagd op agent %s', agentinput)
     #Database
