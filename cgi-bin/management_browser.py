@@ -118,10 +118,14 @@ if (input) == "1":
     print """<html>
     <head><title>Management Console</title></head>
     <link rel="stylesheet" type="text/css" href="stylesheet.css" />
-    <body> BesturingsOS:</body></html>""", r1
+    <body><h1> OS: %s </h1></body>
+    </html>""" % r1
+    #Logging
     logging.info('Het OS is opgevraagd op agent %s', agentinput)
+    #Database
     c.execute("insert into Request values(?,?,?,?)",(agentinput,input,r1,r2,))
     datab.commit()
+    #Export CSV
     f = open("csvlog.csv", 'a')
     writer = csv.writer(f, delimiter=',',lineterminator='\n')
     writer.writerow((now,agentinput,input,r1))
@@ -132,10 +136,11 @@ elif (input) == "2":
     print""" <html>
     <head><title>Management Console</title></head>
     <link rel="stylesheet" type="text/css" href="stylesheet.css" />
-    <body> Uw Username:</body></html>""", r2
-    #logging
+    <body><h1> Ingelogde User: %s </h1></body>
+    </html>""" % r2
+    #Logging
     logging.info('De ingelogde user is opgevraagd op agent %s', agentinput)
-    #database
+    #Database
     c.execute("insert into Request values(?,?,?,?)",(agentinput,input,r2,r2,))
     datab.commit()
     #Export CSV
@@ -149,11 +154,14 @@ elif (input) == "3":
     print """<html>
     <head><title>Management Console</title></head>
     <link rel="stylesheet" type="text/css" href="stylesheet.css" />
-    <body>Beschikbare RAM:</body>
-    </html>""", r3
+    <body><h1> Beschikbare RAM: %s </h1></body>
+    </html>""" % r3
+    #Logging
     logging.info('Het beschikbare RAM geheugen is opgevraagd op agent %s', agentinput)
+    #Database
     c.execute("insert into Request values(?,?,?,?)",(agentinput,input,r3,r2,))
     datab.commit()
+    #Export CSV
     f = open("csvlog.csv", 'a')
     writer = csv.writer(f, delimiter=',',lineterminator='\n')
     writer.writerow((now,agentinput,input,r3))
@@ -164,11 +172,14 @@ elif (input) == "4":
     print """<html>
     <head><title>Management Console</title></head>
     <link rel="stylesheet" type="text/css" href="stylesheet.css" />
-    <body>Beschikbare ruimte op C:</body>
-    </html>""", r4.rstrip()
+    <body><h1> Beschikbare ruimte op C: %s </h1></body>
+    </html>""" % r4.rstrip
+    #Logging
     logging.info('De beschikbare opslag op C: is opgevraagd op agent %s', agentinput)
+    #Database
     c.execute("insert into Request values(?,?,?,?)",(agentinput,input,r4,r2,))
     datab.commit()
+    #Export CSV
     f = open("csvlog.csv", 'a')
     writer = csv.writer(f, delimiter=',',lineterminator='\n')
     writer.writerow((now,agentinput,input,r4))
@@ -179,10 +190,14 @@ elif (input) == "5":
     print  """<html>
     <head><title>Management Console</title></head>
     <link rel="stylesheet" type="text/css" href="stylesheet.css" />
-    <body>IP adres:</body>""", r5.rstrip()
+    <body><h1> IP adres: %s </h1></body>
+    </html>""" % r5.rstrip()
+    #Logging
     logging.info('Het IP adres is opgevraagd op agent %s', agentinput)
+    #Database
     c.execute("insert into Request values(?,?,?,?)",(agentinput,input,r5,r2,))
     datab.commit()
+    #Export CSV
     f = open("csvlog.csv", 'a')
     writer = csv.writer(f, delimiter=',',lineterminator='\n')
     writer.writerow((now,agentinput,input,r5))
@@ -193,10 +208,14 @@ elif (input) == "6":
     print  """<html>
     <head><title>Management Console</title></head>
     <link rel="stylesheet" type="text/css" href="stylesheet.css" />
-    <body>De Uptime is:</body>""", r6.rstrip()
+    <body><h1> De Uptime is: %s </h1></body>
+    </html>""" % r6.rstrip()
+    #Logging
     logging.info('de Uptime is opgevraagd op agent %s', agentinput)
+    #Database
     c.execute("insert into Request values(?,?,?,?)",(agentinput,input,r6,r2,))
     datab.commit()
+    #Export CSV
     f = open("csvlog.csv", 'a')
     writer = csv.writer(f, delimiter=',',lineterminator='\n')
     writer.writerow((now,agentinput,input,r6))
