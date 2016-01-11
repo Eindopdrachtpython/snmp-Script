@@ -80,7 +80,7 @@ elif agentinput == "2":
 
 #Logging
 logging.basicConfig(filename='log.log',level='INFO',
-    format='%(asctime)s : %s : %(levelname)s : %(message)s')
+    format='%(asctime)s : %(levelname)s : %(message)s')
 logging.info('Het script is gestart op agent %s', agentinput)
 
 #Connection database
