@@ -109,6 +109,9 @@ except:
     logging.info('Er kan geen verbinding gemaakt worden met agent %s', agentinput)
     quit()
 
+#De usernaam wordt altijd opgehaald ter behoeve van registratie in de database
+r2=str(client.get_value(number=2).resultaat)
+
 #Hier worden de Powershell scripts op de agent aangeroepen.
 if (input) == "1":
     r1=str(client.get_value(number=1).resultaat)
