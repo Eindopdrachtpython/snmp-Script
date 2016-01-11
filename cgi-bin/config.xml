@@ -1,0 +1,18 @@
+<config>
+    <agent>
+        <agentnumber>1</agentnumber>
+        <location>http://localhost:8008</location>
+        <action>http://localhost:8008</action>
+        <namespace>http://example.com/sample.wsdl</namespace>
+        <soap_ns>soap</soap_ns>
+        <ns>False</ns>
+    </agent>
+    <agent>
+        <agentnumber>2</agentnumber>
+        <location>http://localhost:8008</location>
+        <action>http://localhost:8008</action>
+        <namespace>http://example.com/sample.wsdl</namespace>
+        <soap_ns>soap</soap_ns>
+        <ns>False</ns>
+    </agent>
+</config>
