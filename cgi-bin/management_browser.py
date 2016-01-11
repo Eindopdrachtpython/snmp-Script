@@ -48,36 +48,36 @@ if not re.match("[1-6]{1}",input):
     quit()
     
 #Variabelen agent
-location1 = tree.xpath('/config/agent[1]/location/text()')
-action1 = tree.xpath('/config/agent[1]/action/text()')
-namespace1 = tree.xpath('/config/agent[1]/namespace/text()')
-soap_ns1 = tree.xpath('/config/agent[1]/soap_ns/text()')
-ns1 = tree.xpath('/config/agent[1]/ns/text()')
+location1 = tree.xpath('/config/agent[%s]/location/text()', agentinput)
+action1 = tree.xpath('/config/agent[%s]/action/text()', agentinput)
+namespace1 = tree.xpath('/config/agent[%s]/namespace/text()', agentinput)
+soap_ns1 = tree.xpath('/config/agent[%s]/soap_ns/text()', agentinput)
+ns1 = tree.xpath('/config/agent[%s]/ns/text()', agentinput)
 
 #Variabelen agent2
-location2 = tree.xpath('/config/agent[2]/location/text()')
-action2 = tree.xpath('/config/agent[2]/action/text()')
-namespace2 = tree.xpath('/config/agent[2]/namespace/text()')
-soap_ns2 = tree.xpath('/config/agent[2]/soap_ns/text()')
-ns2 = tree.xpath('/config/agent[2]/ns/text()')
+#location2 = tree.xpath('/config/agent[2]/location/text()')
+#action2 = tree.xpath('/config/agent[2]/action/text()')
+#namespace2 = tree.xpath('/config/agent[2]/namespace/text()')
+#soap_ns2 = tree.xpath('/config/agent[2]/soap_ns/text()')
+#ns2 = tree.xpath('/config/agent[2]/ns/text()')
 
 #Het vergelijken van de input (agent).
 
-if agentinput == "1":
-    client = SoapClient(
-        location = location1[0],
-        action = action1[0],
-        namespace = namespace1[0],
-        soap_ns = soap_ns1[0],
-        ns = False)
+#if agentinput == "1":
+client = SoapClient(
+    location = location1[0],
+    action = action1[0],
+    namespace = namespace1[0],
+    soap_ns = soap_ns1[0],
+    ns = False)
 
-elif agentinput == "2":
-    client = SoapClient(
-        location = location2[0],
-        action = action2[0],
-        namespace = namespace2[0],
-        soap_ns = soap_ns2[0],
-        ns = False)
+#elif agentinput == "2":
+#    client = SoapClient(
+#        location = location2[0],
+#        action = action2[0],
+#        namespace = namespace2[0],
+#        soap_ns = soap_ns2[0],
+#        ns = False)
 
 
 logging.basicConfig(filename='log.log',level='INFO',
@@ -107,7 +107,7 @@ except:
     <body>Er is iets misgegaan met verbinden.</body>
     </html>
     '''
-    logging.info('Er Kon door de gebruiker geen verbinding worden gemaakt')
+    logging.info('Agent %s kon niet worden bereikt.', agentinput)
     quit()
     
 
