@@ -62,7 +62,6 @@ soap_ns2 = tree.xpath('/config/agent[2]/soap_ns/text()')
 ns2 = tree.xpath('/config/agent[2]/ns/text()')
 
 #Het vergelijken van de input (agent).
-
 if agentinput == "1":
     client = SoapClient(
         location = location1[0],
@@ -81,8 +80,8 @@ elif agentinput == "2":
 
 #Logging
 logging.basicConfig(filename='log.log',level='INFO',
-    format='%(asctime)s : agentinput : %(levelname)s : %(message)s')
-logging.info('Script is Gestart')
+    format='%(asctime)s : %s : %(levelname)s : %(message)s')
+logging.info('Het script is gestart op agent %s', agentinput)
 
 #Connection database
 datab = sqlite3.connect("""C:\inetpub\python\cgi-bin\Database\logDB.sqlite""")
@@ -124,9 +123,6 @@ if (input) == "1":
     writer = csv.writer(f, delimiter=',',lineterminator='\n')
     writer.writerow((now,agentinput,input,r1))
     f.close()
-
-
-
 
 elif (input) == "2":
     r2=str(client.get_value(number=2).resultaat)
@@ -202,7 +198,8 @@ elif (input) == "6":
     writer = csv.writer(f, delimiter=',',lineterminator='\n')
     writer.writerow((now,agentinput,input,r6))
     f.close()
-    
+
+#Het beeindigen van de aanvraag wordt gelogd.    
 logging.info("Aanvraag uitgevoerd")
 
 #Het script wordt opnieuw ingeladen, zodat er een nieuwe waarde kan worden opgevraagd.
