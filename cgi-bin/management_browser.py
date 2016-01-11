@@ -81,7 +81,7 @@ elif agentinput == "2":
 
 #Logging
 logging.basicConfig(filename='log.log',level='INFO',
-    format='%(asctime)s : %(agentinput)s : %(levelname)s : %(message)s')
+    format='%(asctime)s : agentinput : %(levelname)s : %(message)s')
 logging.info('Script is Gestart')
 
 #Connection database
