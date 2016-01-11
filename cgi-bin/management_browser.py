@@ -79,14 +79,14 @@ elif agentinput == "2":
         soap_ns = soap_ns2[0],
         ns = False)
 
-
+#Logging
 logging.basicConfig(filename='log.log',level='INFO',
-    format='%(asctime)s : %(levelname)s : %(message)s')
+    format='%(asctime)s : %(agentinput)s : %(levelname)s : %(message)s')
 logging.info('Script is Gestart')
 
+#Connection database
 datab = sqlite3.connect("""C:\inetpub\python\cgi-bin\Database\logDB.sqlite""")
 c=datab.cursor()
-
 
 #Hier wordt er een testwaarde opgevraagd. Dit is ter controle van de verbinding.
 try:
@@ -107,11 +107,8 @@ except:
     <body>Er is iets misgegaan met verbinden.</body>
     </html>
     '''
-    logging.info('Er Kon door de gebruiker geen verbinding worden gemaakt')
+    logging.info('Er kan geen verbinding gemaakt worden met agent %s', agentinput)
     quit()
-    
-
-r2=str(client.get_value(number=2).resultaat)
 
 #Hier worden de Powershell scripts op de agent aangeroepen.
 if (input) == "1":
@@ -120,7 +117,7 @@ if (input) == "1":
     <head><title>Management Console</title></head>
     <link rel="stylesheet" type="text/css" href="stylesheet.css" />
     <body> BesturingsOS:</body></html>""", r1
-    logging.info('Het OS is opgevraagd door %s op agent %s', r2, agentinput)
+    logging.info('Het OS is opgevraagd op agent %s', agentinput)
     c.execute("insert into Request values(?,?,?,?)",(agentinput,input,r1,r2,))
     datab.commit()
     f = open("csvlog.csv", 'a')
@@ -138,7 +135,7 @@ elif (input) == "2":
     <link rel="stylesheet" type="text/css" href="stylesheet.css" />
     <body> Uw Username:</body></html>""", r2
     #logging
-    logging.info('De Ingelogde User is aangevraagd door %s op agent %s', r2, agentinput)
+    logging.info('De ingelogde user is opgevraagd op agent %s', agentinput)
     #database
     c.execute("insert into Request values(?,?,?,?)",(agentinput,input,r2,r2,))
     datab.commit()
@@ -155,7 +152,7 @@ elif (input) == "3":
     <link rel="stylesheet" type="text/css" href="stylesheet.css" />
     <body>Beschikbare RAM:</body>
     </html>""", r3
-    logging.info('Het beschikbare RAM geheugen is aangegevraagd door %s op agent %s', r2, agentinput)
+    logging.info('Het beschikbare RAM geheugen is opgevraagd op agent %s', agentinput)
     c.execute("insert into Request values(?,?,?,?)",(agentinput,input,r3,r2,))
     datab.commit()
     f = open("csvlog.csv", 'a')
@@ -170,7 +167,7 @@ elif (input) == "4":
     <link rel="stylesheet" type="text/css" href="stylesheet.css" />
     <body>Beschikbare ruimte op C:</body>
     </html>""", r4.rstrip()
-    logging.info('De beschikbare Opslag is Opgevraagd door %r2 op agent %s', r2, agentinput)
+    logging.info('De beschikbare opslag op C: is opgevraagd op agent %s', agentinput)
     c.execute("insert into Request values(?,?,?,?)",(agentinput,input,r4,r2,))
     datab.commit()
     f = open("csvlog.csv", 'a')
@@ -183,8 +180,8 @@ elif (input) == "5":
     print  """<html>
     <head><title>Management Console</title></head>
     <link rel="stylesheet" type="text/css" href="stylesheet.css" />
-    <body>IP address:</body>""", r5.rstrip()
-    logging.info('Ip Adres is aanggevraagd door %s op agent %s', r2, agentinput)
+    <body>IP adres:</body>""", r5.rstrip()
+    logging.info('Het IP adres is opgevraagd op agent %s', agentinput)
     c.execute("insert into Request values(?,?,?,?)",(agentinput,input,r5,r2,))
     datab.commit()
     f = open("csvlog.csv", 'a')
@@ -198,7 +195,7 @@ elif (input) == "6":
     <head><title>Management Console</title></head>
     <link rel="stylesheet" type="text/css" href="stylesheet.css" />
     <body>De Uptime is:</body>""", r6.rstrip()
-    logging.info('de Uptime is aangevraagd door %s op agent %s', r2, agentinput)
+    logging.info('de Uptime is opgevraagd op agent %s', agentinput)
     c.execute("insert into Request values(?,?,?,?)",(agentinput,input,r6,r2,))
     datab.commit()
     f = open("csvlog.csv", 'a')
@@ -208,6 +205,7 @@ elif (input) == "6":
     
 logging.info("Aanvraag uitgevoerd")
 
+#Het script wordt opnieuw ingeladen, zodat er een nieuwe waarde kan worden opgevraagd.
 print """<form action="/cgi-bin/management_browser.py" method="post">
 Agentnummer: <input type="text" name="agentnumber"><br />
 Onderwerp: <input type="text" name="onderwerp"><br />
