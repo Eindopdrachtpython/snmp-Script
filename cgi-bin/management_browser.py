@@ -20,7 +20,7 @@ tree = etree.parse(xml)
 #Het inladen van de invoervelden.
 form = cgi.FieldStorage()
 agentinput = (form.getvalue('agentnumber'))
-input = (form.getvalue('onderwerp'))
+input = (form.getvalue('command'))
 
 #Het controleren van de input in het agent veld. 
 if not re.match("[1-2]{1}",agentinput):
@@ -207,9 +207,21 @@ logging.info("Aanvraag uitgevoerd")
 
 #Het script wordt opnieuw ingeladen, zodat er een nieuwe waarde kan worden opgevraagd.
 print """<form action="/cgi-bin/management_browser.py" method="post">
-Agentnummer: <input type="text" name="agentnumber"><br />
-Onderwerp: <input type="text" name="onderwerp"><br />
+Agentnr: <input type="text" name="agentnumber"><br />
+Command: <input type="text" name="command"><br />
 <input type="submit" value="Submit" /></center>
-</form>"""
+</form>
+<h3>Toelichting Agentnr:</h3>
+1: Agent 1 <br/>
+2: Agent 2 <br/>
+
+<h3>Toelichting Command:</h3>
+1: OS versie opvragen <br/>
+2: Gebruikersnaam ingelogde gebruiker opvragen <br/>
+3: Hoeveelheid beschikbaar RAM opvragen <br/>
+4: Hoeveelheid beschikbare ruimte C: opvragen <br/>
+5: IP adres opvragen <br/>
+6: Uptime opvragen <br/>
+"""
 
 

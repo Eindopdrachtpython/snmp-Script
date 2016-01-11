@@ -7,10 +7,21 @@
 <h1>Management Interface</h1>
 <div class=container4><p>
 <form action="/cgi-bin/management_browser.py" method="post">
-Agentnummer: <input type="text" name="agentnumber"><br />
-Onderwerp: <input type="text" name="onderwerp"><br />
+Agentnr (1-2): <input type="text" name="agentnumber"><br />
+Command (1-6): <input type="text" name="command"><br /><br/>
 <input type="submit" value="Submit" /></center>
 </form></p>
 </div>
+<h3>Toelichting Agentnr:</h3>
+1: Agent 1 <br/>
+2: Agent 2 <br/>
+
+<h3>Toelichting Command:</h3>
+1: OS versie opvragen <br/>
+2: Gebruikersnaam ingelogde gebruiker opvragen <br/>
+3: Hoeveelheid beschikbaar RAM opvragen <br/>
+4: Hoeveelheid beschikbare ruimte C: opvragen <br/>
+5: IP adres opvragen <br/>
+6: Uptime opvragen <br/>
 </body>
 </html>
